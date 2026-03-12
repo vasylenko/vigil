@@ -1,11 +1,6 @@
 # Vigil — Architecture
 
-> Living document. Update when the system changes.
 > For product requirements and roadmap, see [PRD.md](PRD.md).
-
-## Overview
-
-**Vigil** is a macOS menu bar utility that prevents idle sleep using Apple's IOPMAssertion API. It lives exclusively in the menu bar (no Dock icon) and provides two sleep prevention modes through a SwiftUI popover.
 
 ## System Context
 
@@ -25,15 +20,6 @@
          powerd (kernel daemon)     SMAppService
          system-wide assertions     login item registration
 ```
-
-## Test Architecture
-
-- **Framework**: Swift Testing (`@Test`, `@Suite`, `#expect`) — not XCTest
-- **Serialization**: `@Suite(.serialized)` — assertions are process-global state, so tests must not run concurrently
-- **`@MainActor`**: Required explicitly on test suites — the test target does not have `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`
-- **DI**: `SleepManager` accepts `defaults: UserDefaults` parameter (defaults to `.standard`) — tests inject isolated suites via `UserDefaults(suiteName:)` to avoid cross-test contamination
-- **Integration-style**: Tests create real IOPMAssertions and verify them via `findAssertions(forPid:)`, a helper that queries the kernel with `IOPMCopyAssertionsByProcess`
-- **AppLauncher pattern**: `AppLauncher` (`@main`) detects test runs via `NSClassFromString("XCTestCase")` and substitutes a lightweight `TestApp` (empty `WindowGroup`). This prevents the menu bar app from installing itself and blocking the test runner.
 
 ## Design Rationale
 
@@ -100,7 +86,3 @@ Assertions are *requests* — macOS overrides them for lid close, manual sleep (
 When making changes, update these docs to stay in sync:
 - **ARCHITECTURE.md** — design rationale, behavior matrix, UserDefaults table, constraints
 - **PRD.md** — scope checklist, resolved decisions
-
-## Roadmap
-
-See [PRD.md](PRD.md) — Scope section (v0.3 Timer, v0.4 Distribution).
