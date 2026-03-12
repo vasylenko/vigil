@@ -25,14 +25,12 @@
 ### v0.3 — Timer
 - [ ] Timer picker (preset durations + custom)
 - [ ] Auto-deactivate after timer expires
-- [ ] Countdown display in the popover
 - [ ] Notification when timer expires
 
 ### v1.0 — Polish and Distribution
-- [ ] Keyboard shortcut to toggle
 - [ ] Homebrew Cask formula
-- [ ] Notarized DMG for direct download
 - [ ] Mac App Store submission (sandbox-compatible)
+- [ ] Notarized DMG for direct download
 
 ## Resolved Decisions
 1. **Icon design**: Custom character artwork — full opacity when active, dimmed when inactive (menu bar + popover hero)
