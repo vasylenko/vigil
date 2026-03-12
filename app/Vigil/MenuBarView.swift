@@ -1,0 +1,146 @@
+import SwiftUI
+import ServiceManagement
+
+struct MenuBarView: View {
+    let sleepManager: SleepManager
+    @State private var launchAtLogin = false
+
+    var body: some View {
+        VStack(spacing: 0) {
+            heroSection
+
+            modeSection
+
+            Divider()
+                .padding(.horizontal)
+
+            settingsSection
+
+            Divider()
+                .padding(.horizontal)
+
+            footerSection
+        }
+        .frame(width: 280)
+        .padding(.vertical, 4)
+        .fixedSize()
+        .onAppear {
+            launchAtLogin = SMAppService.mainApp.status == .enabled
+        }
+    }
+
+    // MARK: - Hero
+
+    private var heroSection: some View {
+        VStack(spacing: 10) {
+            Image("MenuBarIcon")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 48)
+                .opacity(sleepManager.isActive ? 1.0 : 0.4)
+                .animation(.smooth(duration: 0.3), value: sleepManager.isActive)
+
+            HStack(spacing: 8) {
+                Text("Stay Awake")
+                    .font(.headline)
+                Toggle(isOn: Binding(
+                    get: { sleepManager.isActive },
+                    set: { _ in sleepManager.toggle() }
+                )) {
+                    EmptyView()
+                }
+                .toggleStyle(.switch)
+                .labelsHidden()
+            }
+
+            Text(sleepManager.isActive ? sleepManager.sleepMode.description : "Sleep prevention is off")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(sleepManager.isActive ? Color.accentColor.opacity(0.08) : .clear)
+                .animation(.smooth(duration: 0.3), value: sleepManager.isActive)
+        }
+        .padding(.horizontal, 8)
+        .padding(.top, 4)
+        .padding(.bottom, 8)
+    }
+
+    // MARK: - Mode
+
+    private var modeSection: some View {
+        VStack(spacing: 6) {
+            Picker("Mode", selection: Binding(
+                get: { sleepManager.sleepMode },
+                set: { sleepManager.sleepMode = $0 }
+            )) {
+                ForEach(SleepMode.allCases, id: \.self) { mode in
+                    Text(mode.label).tag(mode)
+                }
+            }
+            .pickerStyle(.segmented)
+            .labelsHidden()
+
+            Text(sleepManager.sleepMode.description)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .frame(maxWidth: .infinity, alignment: .center)
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+    }
+
+    // MARK: - Settings
+
+    private var settingsSection: some View {
+        VStack(spacing: 0) {
+            Toggle(isOn: $launchAtLogin) {
+                Label("Launch at Login", systemImage: "sunrise")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .onChange(of: launchAtLogin) { _, newValue in
+                if newValue {
+                    try? SMAppService.mainApp.register()
+                } else {
+                    try? SMAppService.mainApp.unregister()
+                }
+            }
+            .padding(.vertical, 6)
+
+            Divider()
+
+            Toggle(isOn: Binding(
+                get: { sleepManager.rememberLastState },
+                set: { sleepManager.rememberLastState = $0 }
+            )) {
+                Label("Remember Last State", systemImage: "arrow.counterclockwise")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(.vertical, 6)
+        }
+        .controlSize(.small)
+        .toggleStyle(.switch)
+        .padding(.horizontal)
+        .padding(.vertical, 4)
+    }
+
+    // MARK: - Footer
+
+    private var footerSection: some View {
+        Button {
+            sleepManager.saveState()
+            NSApplication.shared.terminate(nil)
+        } label: {
+            Label("Quit Vigil", systemImage: "power")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.plain)
+        .padding(.vertical, 8)
+        .padding(.horizontal)
+    }
+}
