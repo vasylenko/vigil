@@ -26,11 +26,6 @@
          system-wide assertions     login item registration
 ```
 
-## Prerequisites
-
-- **Xcode 26** (or later)
-- **macOS 15.6+** (Sequoia) — both as build host and deployment target
-
 ## Test Architecture
 
 - **Framework**: Swift Testing (`@Test`, `@Suite`, `#expect`) — not XCTest
