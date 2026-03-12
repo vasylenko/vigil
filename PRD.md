@@ -28,7 +28,7 @@
 - [ ] Countdown display in the popover
 - [ ] Notification when timer expires
 
-### v0.4 — Polish and Distribution
+### v1.0 — Polish and Distribution
 - [ ] Keyboard shortcut to toggle
 - [ ] Homebrew Cask formula
 - [ ] Notarized DMG for direct download
