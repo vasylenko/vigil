@@ -97,17 +97,17 @@ The `VigilTests` target contains unit tests covering `SleepManager` (state persi
 
 **AppLauncher pattern**: The app uses an `AppLauncher` entry point that detects test runs via `NSClassFromString("XCTestCase")` and substitutes a lightweight `TestApp` (empty `WindowGroup`) instead of the real `MenuBarExtra` scene. This prevents the menu bar app from installing itself and blocking the test runner.
 
+**Test architecture**:
+- **Framework**: Swift Testing (`@Test`, `@Suite`, `#expect`) — not XCTest
+- **Serialization**: `@Suite(.serialized)` — assertions are process-global state, so tests must not run concurrently
+- **DI**: `SleepManager` accepts `defaults: UserDefaults` parameter (defaults to `.standard`) — tests inject isolated `UserDefaults` suites via `UserDefaults(suiteName:)` to avoid cross-test contamination
+- **Integration-style**: Tests create real IOPMAssertions and verify them via `findAssertions(forPid:)`, a helper that queries the kernel with `IOPMCopyAssertionsByProcess`
+
 ### Verify Sleep Prevention
 ```bash
 # While app is running with toggle ON:
 pmset -g assertions | grep Vigil
 ```
-
-### Conventions
-- **Commits**: Descriptive message, present tense. No AI attribution in commit messages.
-- **Branches**: `main` for stable code. Feature branches for new work.
-- **Files**: New `.swift` files go in `app/Vigil/` — auto-included in build via file sync.
-- **Style**: Match surrounding code. No extraneous comments or docstrings.
 
 ## Component Design
 
@@ -146,6 +146,7 @@ SleepManager (@Observable)
   │
   ├── Lifecycle
   │   ├── init()                          ← restore persisted state + register willTerminate observer
+  │   ├── toggle()                        ← primary UI entry point (activate or deactivate)
   │   ├── activate()                      ← create assertion
   │   ├── deactivate()                    ← release assertion
   │   └── saveState()                     ← persist before quit (called by Quit button + willTerminate)
@@ -307,7 +308,7 @@ Assertions are *requests* — macOS overrides them for lid close, manual sleep (
 | Key | Type | Default | Purpose |
 |-----|------|---------|---------|
 | `rememberLastState` | Bool | `false` | Whether to restore state on launch |
-| `wasActiveAtQuit` | Bool | removed | Whether assertion was active at last quit |
+| `wasActiveAtQuit` | Bool | `false` | Whether assertion was active at last quit (removed when `rememberLastState` is off) |
 | `sleepMode` | String | `displayAndSystem` | Selected sleep prevention mode |
 
 ## Verification
@@ -346,7 +347,7 @@ pmset -g assertions | grep Vigil
 3. The segmented picker in `MenuBarView` auto-populates from `SleepMode.allCases` — no UI change needed
 4. Existing UserDefaults persistence works automatically (uses `rawValue`)
 5. Update the Assertion Behavior Matrix in this doc
-6. Update `PRD.md` Assertion Types Considered table
+6. Update `PRD.md` Scope and Resolved Decisions if the new mode changes product behavior
 
 ### Adding a new UserDefaults key
 
@@ -372,13 +373,11 @@ When making changes, update these docs to stay in sync:
 |---|----------|-----------|
 | 1 | IOPMAssertion over `caffeinate` | Sandbox-compatible, no process management, programmatic control. `caffeinate` is a child process to babysit. |
 | 2 | `@Observable` over `ObservableObject` | Modern Swift Observation framework. Less boilerplate, better performance (fine-grained tracking). |
-| 3 | Two mode presets over individual assertion toggles | Simpler UX. Users think in terms of use cases (presentations vs downloads), not IOKit assertion types. |
-| 4 | Custom character icon over SF Symbols | Brand identity. Opacity (bright/dimmed) communicates state without needing two separate icon designs. |
-| 5 | `MenuBarExtra(.window)` over `.menu` | Rich SwiftUI views (toggles, pickers, backgrounds). `.menu` only supports basic button items. |
-| 6 | Single assertion per mode | `PreventUserIdleDisplaySleep` already implies system idle sleep prevention. No need for two assertions. |
-| 7 | `try?` for SMAppService | System may deny login item registration silently. Graceful degradation — toggle reflects actual system state on next appear. |
-| 8 | `.fixedSize()` on root view | Prevents MenuBarExtra NSPanel from showing resize cursor. The popover should be fixed-size. |
-| 9 | No confirmation on quit while active | PRD decision. Just release assertions and exit. The user explicitly chose to quit. |
+| 3 | Two mode presets over individual assertion toggles | Users think in terms of use cases (presentations vs downloads), not IOKit assertion types. |
+| 4 | `MenuBarExtra(.window)` over `.menu` | Rich SwiftUI views (toggles, pickers, backgrounds). `.menu` only supports basic button items. |
+| 5 | Single assertion per mode | `PreventUserIdleDisplaySleep` already implies system idle sleep prevention. No need for two assertions. |
+| 6 | `try?` for SMAppService | System may deny login item registration silently. Graceful degradation — toggle reflects actual system state on next appear. |
+| 7 | `.fixedSize()` on root view | Prevents MenuBarExtra NSPanel from showing resize cursor. The popover should be fixed-size. |
 
 ## Roadmap
 

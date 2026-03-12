@@ -11,7 +11,8 @@ For architecture, data flows, and decision log, see [ARCHITECTURE.md](ARCHITECTU
 
 - **Language**: Swift 5.0 with Swift 6 concurrency defaults (`SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`)
 - **UI**: SwiftUI (`MenuBarExtra` with `.window` style)
-- **Frameworks**: IOKit.pwr_mgt (power assertions), ServiceManagement (login items), Foundation (UserDefaults)
+- **Frameworks**: IOKit.pwr_mgt (power assertions), AppKit (app lifecycle), ServiceManagement (login items), Foundation (UserDefaults)
+- **Testing**: Swift Testing framework (`@Test`, `@Suite`, `#expect`) — NOT XCTest
 - **Target**: macOS 15.6 (Sequoia), Apple Silicon + Intel
 - **Dependencies**: None. Zero third-party packages.
 - **Build**: `xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'`
@@ -44,6 +45,7 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 - `import IOKit.pwr_mgt` (submodule import, not `import IOKit`)
 - 4-space indentation, no linter/formatter configured
 - Computed properties for view decomposition (`heroSection`, `modeSection`, etc.)
+- DI via default parameters (e.g., `init(defaults: UserDefaults = .standard)`) for testability
 
 ## Quirks
 
@@ -51,4 +53,5 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 - **Sandbox enabled**: IOPMAssertion is sandbox-compatible — no special entitlements needed.
 - **App icon vs menu bar icon**: Two separate assets. App icon (1024px character artwork) shows in Finder. Menu bar icon (18px) shows in the menu bar strip.
 - **Assertion lifecycle**: The OS automatically releases all IOPMAssertions if the app crashes — no leaked assertions possible.
+- **Test entry point**: `AppLauncher` (the actual `@main`) detects test runs via `NSClassFromString("XCTestCase")` and substitutes a lightweight `TestApp`. Do not add `@main` to `VigilApp` directly.
 - **Verify it works**: `pmset -g assertions | grep Vigil` shows the active assertion type and reason string.

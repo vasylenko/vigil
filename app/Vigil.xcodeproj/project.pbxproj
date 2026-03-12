@@ -6,6 +6,9 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8C983B672F63436A004A6B1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +30,9 @@
 		8C983B542F634369004A6B1A /* Vigil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vigil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C983B662F63436A004A6B1A /* VigilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VigilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C983B702F63436A004A6B1A /* VigilUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VigilUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CB2DBC02F63742600F5B1E3 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ARCHITECTURE.md; path = ../ARCHITECTURE.md; sourceTree = SOURCE_ROOT; };
+		8CB2DBC12F63742600F5B1E3 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CLAUDE.md; path = ../CLAUDE.md; sourceTree = SOURCE_ROOT; };
+		8CB2DBC22F63742600F5B1E3 /* PRD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = PRD.md; path = ../PRD.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +85,9 @@
 				8C983B692F63436A004A6B1A /* VigilTests */,
 				8C983B732F63436A004A6B1A /* VigilUITests */,
 				8C983B552F634369004A6B1A /* Products */,
+				8CB2DBC02F63742600F5B1E3 /* ARCHITECTURE.md */,
+				8CB2DBC12F63742600F5B1E3 /* CLAUDE.md */,
+				8CB2DBC22F63742600F5B1E3 /* PRD.md */,
 			);
 			sourceTree = "<group>";
 		};
