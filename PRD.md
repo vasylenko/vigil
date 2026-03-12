@@ -12,7 +12,7 @@
 - Developers, presenters, anyone running long processes who needs to prevent sleep temporarily
 
 ## Tech Stack
-- **Language**: Swift 5.0 language mode with Swift 6 concurrency defaults
+- **Language**: Swift 6
 - **UI**: SwiftUI (`MenuBarExtra` with `.window` style)
 - **IDE**: Xcode 26
 - **Deployment target**: macOS 15.6 (Sequoia)

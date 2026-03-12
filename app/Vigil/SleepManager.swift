@@ -77,7 +77,9 @@ class SleepManager {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.saveState()
+            MainActor.assumeIsolated {
+                self?.saveState()
+            }
         }
     }
 

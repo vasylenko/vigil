@@ -4,6 +4,7 @@ import IOKit.pwr_mgt
 @testable import Vigil
 
 @Suite(.serialized)
+@MainActor
 struct SleepManagerTests {
 
     private func makeDefaults() -> UserDefaults {

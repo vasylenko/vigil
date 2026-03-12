@@ -9,7 +9,7 @@ For architecture, data flows, and decision log, see [ARCHITECTURE.md](ARCHITECTU
 
 ## Tech Stack
 
-- **Language**: Swift 5.0 with Swift 6 concurrency defaults (`SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`)
+- **Language**: Swift 6 (`SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`)
 - **UI**: SwiftUI (`MenuBarExtra` with `.window` style)
 - **Frameworks**: IOKit.pwr_mgt (power assertions), AppKit (app lifecycle), ServiceManagement (login items), Foundation (UserDefaults)
 - **Testing**: Swift Testing framework (`@Test`, `@Suite`, `#expect`) — NOT XCTest
