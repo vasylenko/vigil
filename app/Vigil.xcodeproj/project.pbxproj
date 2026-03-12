@@ -6,9 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		8C983B672F63436A004A6B1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -22,10 +19,10 @@
 /* Begin PBXFileReference section */
 		8C983B542F634369004A6B1A /* Vigil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vigil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C983B662F63436A004A6B1A /* VigilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VigilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-
 		8CB2DBC02F63742600F5B1E3 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ARCHITECTURE.md; path = ../ARCHITECTURE.md; sourceTree = SOURCE_ROOT; };
 		8CB2DBC12F63742600F5B1E3 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CLAUDE.md; path = ../CLAUDE.md; sourceTree = SOURCE_ROOT; };
 		8CB2DBC22F63742600F5B1E3 /* PRD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = PRD.md; path = ../PRD.md; sourceTree = SOURCE_ROOT; };
+		8CC5EAB72F6382F000576635 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -68,6 +65,7 @@
 				8CB2DBC02F63742600F5B1E3 /* ARCHITECTURE.md */,
 				8CB2DBC12F63742600F5B1E3 /* CLAUDE.md */,
 				8CB2DBC22F63742600F5B1E3 /* PRD.md */,
+				8CC5EAB72F6382F000576635 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,7 +143,7 @@
 						CreatedOnToolsVersion = 26.3;
 						TestTargetID = 8C983B532F634369004A6B1A;
 					};
-					};
+				};
 			};
 			buildConfigurationList = 8C983B4F2F634369004A6B1A /* Build configuration list for PBXProject "Vigil" */;
 			developmentRegion = en;
