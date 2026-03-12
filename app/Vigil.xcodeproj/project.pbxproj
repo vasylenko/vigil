@@ -17,19 +17,12 @@
 			remoteGlobalIDString = 8C983B532F634369004A6B1A;
 			remoteInfo = Vigil;
 		};
-		8C983B712F63436A004A6B1A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8C983B4C2F634369004A6B1A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8C983B532F634369004A6B1A;
-			remoteInfo = Vigil;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8C983B542F634369004A6B1A /* Vigil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vigil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C983B662F63436A004A6B1A /* VigilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VigilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C983B702F63436A004A6B1A /* VigilUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VigilUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+
 		8CB2DBC02F63742600F5B1E3 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ARCHITECTURE.md; path = ../ARCHITECTURE.md; sourceTree = SOURCE_ROOT; };
 		8CB2DBC12F63742600F5B1E3 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CLAUDE.md; path = ../CLAUDE.md; sourceTree = SOURCE_ROOT; };
 		8CB2DBC22F63742600F5B1E3 /* PRD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = PRD.md; path = ../PRD.md; sourceTree = SOURCE_ROOT; };
@@ -44,11 +37,6 @@
 		8C983B692F63436A004A6B1A /* VigilTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = VigilTests;
-			sourceTree = "<group>";
-		};
-		8C983B732F63436A004A6B1A /* VigilUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = VigilUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -68,13 +56,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C983B6D2F63436A004A6B1A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -83,7 +64,6 @@
 			children = (
 				8C983B562F634369004A6B1A /* Vigil */,
 				8C983B692F63436A004A6B1A /* VigilTests */,
-				8C983B732F63436A004A6B1A /* VigilUITests */,
 				8C983B552F634369004A6B1A /* Products */,
 				8CB2DBC02F63742600F5B1E3 /* ARCHITECTURE.md */,
 				8CB2DBC12F63742600F5B1E3 /* CLAUDE.md */,
@@ -96,7 +76,6 @@
 			children = (
 				8C983B542F634369004A6B1A /* Vigil.app */,
 				8C983B662F63436A004A6B1A /* VigilTests.xctest */,
-				8C983B702F63436A004A6B1A /* VigilUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,29 +128,6 @@
 			productReference = 8C983B662F63436A004A6B1A /* VigilTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8C983B6F2F63436A004A6B1A /* VigilUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8C983B802F63436A004A6B1A /* Build configuration list for PBXNativeTarget "VigilUITests" */;
-			buildPhases = (
-				8C983B6C2F63436A004A6B1A /* Sources */,
-				8C983B6D2F63436A004A6B1A /* Frameworks */,
-				8C983B6E2F63436A004A6B1A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8C983B722F63436A004A6B1A /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8C983B732F63436A004A6B1A /* VigilUITests */,
-			);
-			name = VigilUITests;
-			packageProductDependencies = (
-			);
-			productName = VigilUITests;
-			productReference = 8C983B702F63436A004A6B1A /* VigilUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -189,11 +145,7 @@
 						CreatedOnToolsVersion = 26.3;
 						TestTargetID = 8C983B532F634369004A6B1A;
 					};
-					8C983B6F2F63436A004A6B1A = {
-						CreatedOnToolsVersion = 26.3;
-						TestTargetID = 8C983B532F634369004A6B1A;
 					};
-				};
 			};
 			buildConfigurationList = 8C983B4F2F634369004A6B1A /* Build configuration list for PBXProject "Vigil" */;
 			developmentRegion = en;
@@ -220,7 +172,6 @@
 			targets = (
 				8C983B532F634369004A6B1A /* Vigil */,
 				8C983B652F63436A004A6B1A /* VigilTests */,
-				8C983B6F2F63436A004A6B1A /* VigilUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -234,13 +185,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8C983B642F63436A004A6B1A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8C983B6E2F63436A004A6B1A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -264,13 +208,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C983B6C2F63436A004A6B1A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -278,11 +215,6 @@
 			isa = PBXTargetDependency;
 			target = 8C983B532F634369004A6B1A /* Vigil */;
 			targetProxy = 8C983B672F63436A004A6B1A /* PBXContainerItemProxy */;
-		};
-		8C983B722F63436A004A6B1A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8C983B532F634369004A6B1A /* Vigil */;
-			targetProxy = 8C983B712F63436A004A6B1A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -525,48 +457,6 @@
 			};
 			name = Release;
 		};
-		8C983B812F63436A004A6B1A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 6242FZP439;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = serhiivasylenko.vigilUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
-				TEST_TARGET_NAME = Vigil;
-			};
-			name = Debug;
-		};
-		8C983B822F63436A004A6B1A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 6242FZP439;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = serhiivasylenko.vigilUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
-				TEST_TARGET_NAME = Vigil;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -593,15 +483,6 @@
 			buildConfigurations = (
 				8C983B7E2F63436A004A6B1A /* Debug */,
 				8C983B7F2F63436A004A6B1A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8C983B802F63436A004A6B1A /* Build configuration list for PBXNativeTarget "VigilUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8C983B812F63436A004A6B1A /* Debug */,
-				8C983B822F63436A004A6B1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

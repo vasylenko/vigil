@@ -15,17 +15,17 @@ struct SleepManagerTests {
 
     @Test func initRestoresStateWhenRememberEnabled() {
         let defaults = makeDefaults()
-        defaults.set(true, forKey: "rememberLastState")
-        defaults.set(true, forKey: "wasActiveAtQuit")
+        defaults.set(true, forKey: SleepManager.DefaultsKey.rememberLastState)
+        defaults.set(true, forKey: SleepManager.DefaultsKey.wasActiveAtQuit)
         let manager = SleepManager(defaults: defaults)
+        defer { manager.deactivate() }
         #expect(manager.isActive == true)
-        manager.deactivate()
     }
 
     @Test func initDoesNotRestoreWhenRememberDisabled() {
         let defaults = makeDefaults()
-        defaults.set(false, forKey: "rememberLastState")
-        defaults.set(true, forKey: "wasActiveAtQuit")
+        defaults.set(false, forKey: SleepManager.DefaultsKey.rememberLastState)
+        defaults.set(true, forKey: SleepManager.DefaultsKey.wasActiveAtQuit)
         let manager = SleepManager(defaults: defaults)
         #expect(manager.isActive == false)
     }
@@ -35,9 +35,9 @@ struct SleepManagerTests {
     @Test func activateCreatesSystemAssertion() {
         let manager = SleepManager(defaults: makeDefaults())
         manager.activate()
+        defer { manager.deactivate() }
         let assertions = findAssertions(forPid: ProcessInfo.processInfo.processIdentifier)
         #expect(assertions.contains { $0.name.contains("Vigil") })
-        manager.deactivate()
     }
 
     @Test func deactivateRemovesSystemAssertion() {
@@ -52,13 +52,34 @@ struct SleepManagerTests {
         let manager = SleepManager(defaults: makeDefaults())
         manager.sleepMode = .displayAndSystem
         manager.activate()
+        defer { manager.deactivate() }
 
         manager.sleepMode = .systemOnly
 
         let assertions = findAssertions(forPid: ProcessInfo.processInfo.processIdentifier)
         #expect(assertions.contains { $0.type == (kIOPMAssertPreventUserIdleSystemSleep as String) })
         #expect(!assertions.contains { $0.type == (kIOPMAssertPreventUserIdleDisplaySleep as String) })
-        manager.deactivate()
+    }
+
+    // MARK: - State persistence
+
+    @Test func saveStatePersistsActiveState() {
+        let defaults = makeDefaults()
+        let manager = SleepManager(defaults: defaults)
+        manager.rememberLastState = true
+        manager.activate()
+        defer { manager.deactivate() }
+        manager.saveState()
+        #expect(defaults.bool(forKey: SleepManager.DefaultsKey.wasActiveAtQuit) == true)
+    }
+
+    @Test func saveStateClearsWhenRememberDisabled() {
+        let defaults = makeDefaults()
+        defaults.set(true, forKey: SleepManager.DefaultsKey.wasActiveAtQuit)
+        let manager = SleepManager(defaults: defaults)
+        manager.rememberLastState = false
+        manager.saveState()
+        #expect(defaults.object(forKey: SleepManager.DefaultsKey.wasActiveAtQuit) == nil)
     }
 }
 

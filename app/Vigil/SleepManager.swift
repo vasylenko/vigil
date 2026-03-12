@@ -44,12 +44,12 @@ class SleepManager {
     var isActive = false
     var rememberLastState: Bool {
         didSet {
-            defaults.set(rememberLastState, forKey: "rememberLastState")
+            defaults.set(rememberLastState, forKey: DefaultsKey.rememberLastState)
         }
     }
     var sleepMode: SleepMode {
         didSet {
-            defaults.set(sleepMode.rawValue, forKey: "sleepMode")
+            defaults.set(sleepMode.rawValue, forKey: DefaultsKey.sleepMode)
             if isActive {
                 deactivate()
                 activate()
@@ -59,16 +59,22 @@ class SleepManager {
     private let defaults: UserDefaults
     private var assertionID: IOPMAssertionID = 0
 
+    enum DefaultsKey {
+        static let rememberLastState = "rememberLastState"
+        static let sleepMode = "sleepMode"
+        static let wasActiveAtQuit = "wasActiveAtQuit"
+    }
+
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        rememberLastState = defaults.bool(forKey: "rememberLastState")
-        if let stored = defaults.string(forKey: "sleepMode"),
+        rememberLastState = defaults.bool(forKey: DefaultsKey.rememberLastState)
+        if let stored = defaults.string(forKey: DefaultsKey.sleepMode),
            let mode = SleepMode(rawValue: stored) {
             sleepMode = mode
         } else {
             sleepMode = .displayAndSystem
         }
-        if rememberLastState && defaults.bool(forKey: "wasActiveAtQuit") {
+        if rememberLastState && defaults.bool(forKey: DefaultsKey.wasActiveAtQuit) {
             activate()
         }
 
@@ -113,9 +119,9 @@ class SleepManager {
 
     func saveState() {
         if rememberLastState {
-            defaults.set(isActive, forKey: "wasActiveAtQuit")
+            defaults.set(isActive, forKey: DefaultsKey.wasActiveAtQuit)
         } else {
-            defaults.removeObject(forKey: "wasActiveAtQuit")
+            defaults.removeObject(forKey: DefaultsKey.wasActiveAtQuit)
         }
     }
 }
