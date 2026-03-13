@@ -4,6 +4,7 @@ import ServiceManagement
 struct MenuBarView: View {
     let sleepManager: SleepManager
     @State private var launchAtLogin = false
+    @State private var isHoveringQuit = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -32,13 +33,13 @@ struct MenuBarView: View {
     // MARK: - Hero
 
     private var heroSection: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 8) {
             Image("MenuBarIcon")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 48)
                 .opacity(sleepManager.isActive ? 1.0 : 0.4)
-                .animation(.smooth(duration: 0.3), value: sleepManager.isActive)
+                .animation(.spring(duration: 0.25), value: sleepManager.isActive)
 
             HStack(spacing: 8) {
                 Text("Stay Awake")
@@ -53,7 +54,7 @@ struct MenuBarView: View {
                 .labelsHidden()
             }
 
-            Text(sleepManager.isActive ? sleepManager.sleepMode.description : "Sleep prevention is off")
+            Text(sleepManager.isActive ? "Sleep prevention is on" : "Sleep prevention is off")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -62,7 +63,7 @@ struct MenuBarView: View {
         .background {
             RoundedRectangle(cornerRadius: 8)
                 .fill(sleepManager.isActive ? Color.accentColor.opacity(0.08) : .clear)
-                .animation(.smooth(duration: 0.3), value: sleepManager.isActive)
+                .animation(.spring(duration: 0.25), value: sleepManager.isActive)
         }
         .padding(.horizontal, 8)
         .padding(.top, 4)
@@ -72,7 +73,7 @@ struct MenuBarView: View {
     // MARK: - Mode
 
     private var modeSection: some View {
-        VStack(spacing: 6) {
+        VStack(spacing: 4) {
             Picker("Mode", selection: Binding(
                 get: { sleepManager.sleepMode },
                 set: { sleepManager.sleepMode = $0 }
@@ -108,7 +109,7 @@ struct MenuBarView: View {
                     try? SMAppService.mainApp.unregister()
                 }
             }
-            .padding(.vertical, 6)
+            .padding(.vertical, 4)
 
             Divider()
 
@@ -119,7 +120,7 @@ struct MenuBarView: View {
                 Label("Remember Last State", systemImage: "arrow.counterclockwise")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .padding(.vertical, 6)
+            .padding(.vertical, 4)
         }
         .controlSize(.small)
         .toggleStyle(.switch)
@@ -142,5 +143,13 @@ struct MenuBarView: View {
         .buttonStyle(.plain)
         .padding(.vertical, 8)
         .padding(.horizontal)
+        .contentShape(Rectangle())
+        .background {
+            RoundedRectangle(cornerRadius: 4)
+                .fill(isHoveringQuit ? Color.primary.opacity(0.08) : .clear)
+        }
+        .onHover { hovering in
+            isHoveringQuit = hovering
+        }
     }
 }
