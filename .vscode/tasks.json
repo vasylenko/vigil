@@ -42,6 +42,17 @@
       "problemMatcher": []
     },
     {
+      "label": "Website",
+      "type": "shell",
+      "command": "python3 -m http.server 8765 --directory website",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Clean",
       "type": "shell",
       "command": "rm -rf ./build && echo 'Build directory cleaned'",
