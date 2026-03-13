@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS' -derivedDataPath ./build 2>&1 | /opt/homebrew/bin/xcbeautify",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "xcodebuild test -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS' -derivedDataPath ./build 2>&1 | /opt/homebrew/bin/xcbeautify",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run",
+      "type": "shell",
+      "command": "open ./build/Build/Products/Debug/Vigil.app",
+      "dependsOn": ["Clean", "Build"],
+      "dependsOrder": "sequence",
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "command": "rm -rf ./build && echo 'Build directory cleaned'",
+      "presentation": {
+        "reveal": "always",
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
