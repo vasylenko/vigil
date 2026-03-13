@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - '.github/workflows/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'
+
+      - name: Test
+        run: xcodebuild test -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'
