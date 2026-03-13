@@ -18,14 +18,31 @@ concurrency:
 
 jobs:
   build-and-test:
-    name: Build and Test
-    runs-on: macos-15
+    name: Build and Test (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        runner: [macos-15, macos-26]
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Build
-        run: xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'
+        run: >
+          xcodebuild build
+          -project app/Vigil.xcodeproj
+          -scheme Vigil
+          -destination 'platform=macOS'
+          CODE_SIGN_IDENTITY="-"
+          CODE_SIGNING_REQUIRED=NO
+          CODE_SIGNING_ALLOWED=NO
 
       - name: Test
-        run: xcodebuild test -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'
+        run: >
+          xcodebuild test
+          -project app/Vigil.xcodeproj
+          -scheme Vigil
+          -destination 'platform=macOS'
+          CODE_SIGN_IDENTITY="-"
+          CODE_SIGNING_REQUIRED=NO
+          CODE_SIGNING_ALLOWED=NO
