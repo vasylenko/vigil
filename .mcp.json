@@ -1,10 +1,12 @@
 {
   "mcpServers": {
-    "playwright": {
+    "chrome-devtools": {
       "type": "stdio",
       "command": "npx",
       "args": [
-        "@playwright/mcp@latest"
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--autoConnect"
       ],
       "env": {}
     }
