@@ -73,11 +73,11 @@ xcodebuild test -project app/Vigil.xcodeproj -scheme Vigil -destination 'platfor
 
 # Build and run
 xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS' -quiet && \
-open "$(xcodebuild -project app/Vigil.xcodeproj -scheme Vigil -showBuildSettings 2>/dev/null | awk '/BUILT_PRODUCTS_DIR/{print $3}')/Vigil.app"
+open "$(xcodebuild -project app/Vigil.xcodeproj -scheme Vigil -showBuildSettings 2>/dev/null | grep '^ *BUILT_PRODUCTS_DIR = ' | sed 's/.*= //')/Vigil.app"
 
 # Build and run with a specific language (replace 'uk' with: de, es, hi, zh-Hans)
 xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS' -quiet && \
-open "$(xcodebuild -project app/Vigil.xcodeproj -scheme Vigil -showBuildSettings 2>/dev/null | awk '/BUILT_PRODUCTS_DIR/{print $3}')/Vigil.app" --args -AppleLanguages '(uk)'
+open "$(xcodebuild -project app/Vigil.xcodeproj -scheme Vigil -showBuildSettings 2>/dev/null | grep '^ *BUILT_PRODUCTS_DIR = ' | sed 's/.*= //')/Vigil.app" --args -AppleLanguages '(uk)'
 
 # Verify sleep assertion is active
 pmset -g assertions | grep Vigil
