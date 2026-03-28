@@ -26,7 +26,7 @@ vigil/
 ├── PRD.md                 # Product requirements
 ├── app/                   # macOS app (Xcode project)
 │   ├── Vigil.xcodeproj/
-│   ├── Vigil/             # Source + PrivacyInfo.xcprivacy
+│   ├── Vigil/             # Source + PrivacyInfo.xcprivacy + Localizable.xcstrings
 │   └── VigilTests/
 ├── appstore/              # App Store screenshots (2880×1800)
 └── website/               # Static promo site (Vercel): vigil-for-mac.vercel.app
@@ -43,6 +43,7 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 - `// MARK: -` comments for view section organization
 - `import IOKit.pwr_mgt` (submodule import, not `import IOKit`)
 - Computed properties for view decomposition (`heroSection`, `modeSection`, etc.)
+- `LocalizedStringResource` for localizable strings in enums/models (not plain `String`) — enables auto-extraction into String Catalogs
 
 ## Testing
 
@@ -52,6 +53,15 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 - **DI**: `SleepManager` accepts `defaults: UserDefaults = .standard` — tests inject isolated suites via `UserDefaults(suiteName:)` to avoid cross-test contamination
 - **Integration-style**: Tests create real IOPMAssertions and verify via `findAssertions(forPid:)`, a helper that queries the kernel with `IOPMCopyAssertionsByProcess`
 - **Entry point**: `AppLauncher` (the actual `@main`) detects test runs via `NSClassFromString("XCTestCase")` and substitutes a lightweight `TestApp`. Do not add `@main` to `VigilApp` directly.
+
+## Localization
+
+- **Catalog**: Single `Localizable.xcstrings` (String Catalog) — all languages in one file
+- **Languages**: English (source), German (de), Spanish (es), Hindi (hi), Chinese Simplified (zh-Hans)
+- **SwiftUI views**: `Text("...")` and `Label("...")` strings are auto-extracted on build — no manual registration
+- **Enum/model strings**: Return `LocalizedStringResource` (not `String`) so Xcode auto-extracts them too
+- **Not localized**: `SleepMode.assertionReason` — intentionally English (appears in `pmset` output and Activity Monitor)
+- **Adding a new string**: Just use `Text("New string")` or return `LocalizedStringResource`. Build the project — the key appears in `Localizable.xcstrings` marked "New". Add translations there.
 
 ## Distribution
 
