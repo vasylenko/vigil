@@ -18,10 +18,8 @@ struct VigilApp: App {
         MenuBarExtra {
             MenuBarView(sleepManager: sleepManager)
         } label: {
-            Image("MenuBarIcon")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 18)
+            Image(systemName: "light.beacon.max.fill")
+                .font(.system(size: 22))
                 .opacity(sleepManager.isActive ? 1.0 : 0.4)
         }
         .menuBarExtraStyle(.window)

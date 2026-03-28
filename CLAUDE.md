@@ -97,7 +97,7 @@ pmset -g assertions | grep Vigil
 
 - **LSUIElement = YES**: No Dock icon, no Cmd+Tab. The app only appears in the menu bar and Activity Monitor.
 - **Sandbox enabled**: IOPMAssertion is sandbox-compatible — no special entitlements needed. Confirmed working in sandboxed Release + TestFlight builds.
-- **App icon vs menu bar icon**: Two separate assets. App icon (1024px lighthouse artwork) shows in Finder. Menu bar icon (18px monochrome template) shows in the menu bar strip.
+- **App icon vs menu bar icon**: App icon (1024px lighthouse artwork in AppIcon.appiconset) shows in Finder. Menu bar icon uses SF Symbol `light.beacon.max.fill` in the menu bar strip.
 - **Assertion lifecycle**: The OS automatically releases all IOPMAssertions if the app crashes — no leaked assertions possible.
 - **Verify it works**: `pmset -g assertions | grep Vigil` shows the active assertion type and reason string.
 - **No colons in PRODUCT_NAME**: Apple rejects `.app` bundles with `:` in the name (ITMS-90267). The App Store display name can have colons/dashes, but PRODUCT_NAME must not.
