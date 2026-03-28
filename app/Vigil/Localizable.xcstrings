@@ -21,6 +21,12 @@
             "value" : "डिस्प्ले और सिस्टम"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Екран і система"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47,6 +53,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लॉगिन पर लॉन्च करें"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запускати при вході"
           }
         },
         "zh-Hans" : {
@@ -77,6 +89,12 @@
             "value" : "मोड"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -103,6 +121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vigil बंद करें"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завершити Vigil"
           }
         },
         "zh-Hans" : {
@@ -133,6 +157,12 @@
             "value" : "पिछली स्थिति याद रखें"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запам'ятати останній стан"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -159,6 +189,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्क्रीन और सिस्टम जागते रहेंगे"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Екран і система не засинатимуть"
           }
         },
         "zh-Hans" : {
@@ -189,6 +225,12 @@
             "value" : "स्क्रीन स्लीप हो सकती है, सिस्टम चलता रहेगा"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Екран може заснути, система працюватиме"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -215,6 +257,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्लीप प्रिवेंशन बंद है"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запобігання сну вимкнено"
           }
         },
         "zh-Hans" : {
@@ -245,6 +293,12 @@
             "value" : "स्लीप प्रिवेंशन चालू है"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запобігання сну увімкнено"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -273,6 +327,12 @@
             "value" : "जागते रहें"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не засинати"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -299,6 +359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "केवल सिस्टम"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лише система"
           }
         },
         "zh-Hans" : {

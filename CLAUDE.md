@@ -57,7 +57,7 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 ## Localization
 
 - **Catalog**: Single `Localizable.xcstrings` (String Catalog) — all languages in one file
-- **Languages**: English (source), German (de), Spanish (es), Hindi (hi), Chinese Simplified (zh-Hans)
+- **Languages**: English (source), German (de), Spanish (es), Hindi (hi), Ukrainian (uk), Chinese Simplified (zh-Hans)
 - **SwiftUI views**: `Text("...")` and `Label("...")` strings are auto-extracted on build — no manual registration
 - **Enum/model strings**: Return `LocalizedStringResource` (not `String`) so Xcode auto-extracts them too
 - **Not localized**: `SleepMode.assertionReason` — intentionally English (appears in `pmset` output and Activity Monitor)

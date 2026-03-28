@@ -154,6 +154,7 @@
 				de,
 				es,
 				hi,
+				uk,
 				"zh-Hans",
 			);
 			mainGroup = 8C983B4B2F634369004A6B1A;
