@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8C983B532F634369004A6B1A"
-               BuildableName = "Vigil.app"
+               BuildableName = "Vigil: Stay Awake.app"
                BlueprintName = "Vigil"
                ReferencedContainer = "container:Vigil.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C983B532F634369004A6B1A"
-            BuildableName = "Vigil.app"
+            BuildableName = "Vigil: Stay Awake.app"
             BlueprintName = "Vigil"
             ReferencedContainer = "container:Vigil.xcodeproj">
          </BuildableReference>
@@ -74,7 +74,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8C983B532F634369004A6B1A"
-            BuildableName = "Vigil.app"
+            BuildableName = "Vigil: Stay Awake.app"
             BlueprintName = "Vigil"
             ReferencedContainer = "container:Vigil.xcodeproj">
          </BuildableReference>
