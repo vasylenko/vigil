@@ -85,7 +85,7 @@ struct MenuBarView: View {
             .pickerStyle(.segmented)
             .labelsHidden()
 
-            Text(sleepManager.sleepMode.description)
+            Text(sleepManager.sleepMode.modeDescription)
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .center)

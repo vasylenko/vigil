@@ -31,7 +31,7 @@ enum SleepMode: String, CaseIterable {
         }
     }
 
-    var description: LocalizedStringResource {
+    var modeDescription: LocalizedStringResource {
         switch self {
         case .displayAndSystem: "Screen and system stay awake"
         case .systemOnly: "Screen may sleep, system stays running"
