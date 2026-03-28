@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Vigil: Stay Awake</title>
+    <meta name="description" content="Privacy policy for Vigil: Stay Awake — a macOS menu bar utility that prevents idle sleep.">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['ui-sans-serif', '-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+
+    <nav class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
+        <a href="/" class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">&larr; Back to Vigil</a>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 py-12">
+        <h1 class="text-3xl font-bold tracking-tight mb-8">Privacy Policy</h1>
+        <p class="text-sm text-zinc-500 mb-8">Last updated: March 28, 2026</p>
+
+        <div class="space-y-6 text-zinc-300 leading-relaxed">
+            <p>
+                Vigil: Stay Awake (<strong class="text-zinc-100">"Vigil"</strong>) is a macOS menu bar utility
+                developed by Serhii Vasylenko. Your privacy is straightforward because Vigil does not interact
+                with the internet in any way.
+            </p>
+
+            <h2 class="text-xl font-semibold text-zinc-100 pt-4">Data Collection</h2>
+            <p>Vigil does <strong class="text-zinc-100">not</strong> collect, store, or transmit any personal data. Specifically:</p>
+            <ul class="list-disc list-inside space-y-2 text-zinc-400">
+                <li>No analytics or telemetry</li>
+                <li>No crash reporting</li>
+                <li>No network requests of any kind</li>
+                <li>No user accounts or authentication</li>
+                <li>No third-party SDKs or frameworks</li>
+            </ul>
+
+            <h2 class="text-xl font-semibold text-zinc-100 pt-4">Local Storage</h2>
+            <p>
+                Vigil stores your preferences (sleep mode, launch-at-login setting, and last active state)
+                locally on your Mac using macOS UserDefaults. This data never leaves your device and is removed
+                when you delete the app.
+            </p>
+
+            <h2 class="text-xl font-semibold text-zinc-100 pt-4">System Permissions</h2>
+            <p>
+                Vigil uses macOS power assertions (IOPMAssertion) to prevent idle sleep. This is the same API
+                used by macOS itself and does not require any special permissions or access to personal data.
+            </p>
+
+            <h2 class="text-xl font-semibold text-zinc-100 pt-4">Contact</h2>
+            <p>
+                If you have questions about this privacy policy, contact
+                <a href="mailto:vigil@vasylenko.info" class="text-blue-400 hover:text-blue-300 underline underline-offset-4">vigil@vasylenko.info</a>.
+            </p>
+        </div>
+    </main>
+
+    <footer class="max-w-3xl mx-auto px-6 py-12 border-t border-zinc-800/60 text-center">
+        <p class="text-sm text-zinc-500">
+            <a href="/" class="text-zinc-400 hover:text-zinc-100 transition-colors underline underline-offset-4 decoration-zinc-700">Vigil: Stay Awake</a>
+            &middot;
+            <a href="/support.html" class="text-zinc-400 hover:text-zinc-100 transition-colors underline underline-offset-4 decoration-zinc-700">Support</a>
+        </p>
+    </footer>
+</body>
+</html>

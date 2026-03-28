@@ -131,25 +131,37 @@ struct MenuBarView: View {
     // MARK: - Footer
 
     private var footerSection: some View {
-        Button {
-            sleepManager.saveState()
-            NSApplication.shared.terminate(nil)
-        } label: {
-            Label("Quit Vigil", systemImage: "power")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity)
-        }
-        .buttonStyle(.plain)
-        .padding(.vertical, 8)
-        .padding(.horizontal)
-        .contentShape(Rectangle())
-        .background {
-            RoundedRectangle(cornerRadius: 4)
-                .fill(isHoveringQuit ? Color.primary.opacity(0.08) : .clear)
-        }
-        .onHover { hovering in
-            isHoveringQuit = hovering
+        VStack(spacing: 0) {
+            Link(destination: URL(string: "https://vigil-for-mac.vercel.app/privacy.html")!) {
+                Label("Privacy Policy", systemImage: "hand.raised")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.plain)
+            .padding(.vertical, 6)
+            .padding(.horizontal)
+
+            Button {
+                sleepManager.saveState()
+                NSApplication.shared.terminate(nil)
+            } label: {
+                Label("Quit Vigil", systemImage: "power")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.plain)
+            .padding(.vertical, 8)
+            .padding(.horizontal)
+            .contentShape(Rectangle())
+            .background {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(isHoveringQuit ? Color.primary.opacity(0.08) : .clear)
+            }
+            .onHover { hovering in
+                isHoveringQuit = hovering
+            }
         }
     }
 }
