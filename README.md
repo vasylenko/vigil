@@ -62,6 +62,3 @@ pid 1234(Vigil): PreventUserIdleDisplaySleep named: "Vigil is keeping your Mac a
 
 Swift 6, SwiftUI, zero third-party dependencies. ~300 lines of code across three files.
 
-## Credits
-
-App icon based on "Awake" icon created by [Freepik - Flaticon](https://www.flaticon.com/free-icons/awake).

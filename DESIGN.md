@@ -15,7 +15,7 @@ A utility earns trust by being:
 - **Quiet** — it stays out of the way until needed.
 - **Obvious** — no learning curve, no surprises.
 
-Vigil's only personality is the character icon. That icon carries the entire brand. Everything around it is system-native — invisible scaffolding that lets the icon and the primary toggle speak.
+Vigil's only personality is the lighthouse icon. That icon carries the entire brand. Everything around it is system-native — invisible scaffolding that lets the icon and the primary toggle speak.
 
 ---
 
@@ -35,7 +35,7 @@ Every pixel of visual weight must be earned. The hierarchy:
 
 | Weight | Element | Why it earns weight |
 |--------|---------|-------------------|
-| Heaviest | Character icon | Brand identity — the one thing that's "Vigil" |
+| Heaviest | Lighthouse icon | Brand identity — the one thing that's "Vigil" |
 | Heavy | Primary toggle | The reason the app exists |
 | Medium | Mode selector | Modifies how the primary action works |
 | Light | Settings rows | Used once, then forgotten |
@@ -45,7 +45,7 @@ Nothing outside this hierarchy gets visual weight. No decorative elements. No bo
 
 ### 3. One Personality Element
 
-The character icon is Vigil's single personality element. It's playful, distinctive, and recognizable. **Everything else is invisible.** System fonts, system controls, system colors. The moment a second element competes for personality — a custom toggle, a branded color, a non-standard font — the interface becomes noisy and the icon loses its power.
+The lighthouse icon is Vigil's single personality element. It's distinctive and recognizable. **Everything else is invisible.** System fonts, system controls, system colors. The moment a second element competes for personality — a custom toggle, a branded color, a non-standard font — the interface becomes noisy and the icon loses its power.
 
 ### 4. State as Reward
 

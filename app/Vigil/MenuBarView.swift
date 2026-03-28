@@ -33,11 +33,12 @@ struct MenuBarView: View {
     // MARK: - Hero
 
     private var heroSection: some View {
-        VStack(spacing: 8) {
-            Image("MenuBarIcon")
+        VStack(spacing: 4) {
+            Image(nsImage: NSApplication.shared.applicationIconImage)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 48)
+                .frame(height: 80)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
                 .opacity(sleepManager.isActive ? 1.0 : 0.4)
                 .animation(.spring(duration: 0.25), value: sleepManager.isActive)
 
@@ -55,7 +56,7 @@ struct MenuBarView: View {
             }
 
             Text(sleepManager.isActive ? "Sleep prevention is on" : "Sleep prevention is off")
-                .font(.subheadline)
+                .font(.caption)
                 .foregroundStyle(.secondary)
         }
         .padding()
@@ -99,7 +100,7 @@ struct MenuBarView: View {
     private var settingsSection: some View {
         VStack(spacing: 0) {
             Toggle(isOn: $launchAtLogin) {
-                Label("Launch at Login", systemImage: "sunrise")
+                Text("Launch at Login")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .onChange(of: launchAtLogin) { _, newValue in
@@ -117,7 +118,7 @@ struct MenuBarView: View {
                 get: { sleepManager.rememberLastState },
                 set: { sleepManager.rememberLastState = $0 }
             )) {
-                Label("Remember Last State", systemImage: "arrow.counterclockwise")
+                Text("Remember Last State")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.vertical, 4)

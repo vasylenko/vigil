@@ -40,7 +40,7 @@
 - [ ] Notarized DMG for direct download
 
 ## Resolved Decisions
-1. **Icon design**: Custom character artwork — full opacity when active, dimmed when inactive (menu bar + popover hero)
+1. **Icon design**: Custom lighthouse artwork — full opacity when active, dimmed when inactive (popover hero)
 2. **Sleep modes**: Two presets — "Display & System" and "System Only" — one active at a time
 3. **Notifications (MVP)**: None — icon state change is sufficient for user-initiated toggles. Notifications reserved for timer expiry (v0.3)
 4. **Quit while active**: No confirmation dialog — just quit and release
