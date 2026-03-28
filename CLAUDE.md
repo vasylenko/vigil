@@ -62,6 +62,7 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 - **Enum/model strings**: Return `LocalizedStringResource` (not `String`) so Xcode auto-extracts them too
 - **Not localized**: `SleepMode.assertionReason` — intentionally English (appears in `pmset` output and Activity Monitor)
 - **Adding a new string**: Just use `Text("New string")` or return `LocalizedStringResource`. Build the project — the key appears in `Localizable.xcstrings` marked "New". Add translations there.
+- **Testing a language**: In Xcode: Edit Scheme → Run → Options → App Language. From CLI: `open path/to/Vigil.app --args -AppleLanguages '(uk)'`. Replace `uk` with any locale code (`de`, `es`, `hi`, `zh-Hans`).
 
 ## Distribution
 
