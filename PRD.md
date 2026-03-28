@@ -28,8 +28,15 @@
 - [ ] Notification when timer expires
 
 ### v1.0 — Polish and Distribution
+- [x] App Store Connect app record ("Vigil - Stay Awake")
+- [x] Xcode Cloud CI/CD (archive + TestFlight)
+- [x] TestFlight Internal Testing (live, build verified)
+- [x] TestFlight External Testing (submitted for Beta App Review)
+- [x] Privacy manifest (PrivacyInfo.xcprivacy)
+- [x] App Store metadata (description, keywords, screenshots, age rating, privacy labels)
+- [x] Website with privacy policy and support pages
+- [ ] Mac App Store submission
 - [ ] Homebrew Cask formula
-- [ ] Mac App Store submission (sandbox-compatible)
 - [ ] Notarized DMG for direct download
 
 ## Resolved Decisions

@@ -52,6 +52,8 @@
 | **File sync** | `PBXFileSystemSynchronizedRootGroup` — new `.swift` files in `app/Vigil/` auto-included in build. |
 | **Deployment target** | macOS 15.6 (Sequoia). All APIs available since macOS 13-14. |
 | **Bundle ID** | `serhiivasylenko.vigil` |
+| **Privacy manifest** | `PrivacyInfo.xcprivacy` — declares `NSPrivacyAccessedAPICategoryUserDefaults` with reason `CA92.1` (app-specific read/write). Required for App Store upload. |
+| **PRODUCT_NAME** | `Vigil` (no colons — Apple rejects `:` in bundle names, ITMS-90267). App Store display name "Vigil - Stay Awake" is managed separately in App Store Connect. |
 
 ## Assertion Behavior Matrix
 

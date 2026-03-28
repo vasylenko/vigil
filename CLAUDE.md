@@ -26,9 +26,10 @@ vigil/
 ├── PRD.md                 # Product requirements
 ├── app/                   # macOS app (Xcode project)
 │   ├── Vigil.xcodeproj/
-│   ├── Vigil/             # Source: VigilApp.swift, SleepManager.swift, MenuBarView.swift
+│   ├── Vigil/             # Source + PrivacyInfo.xcprivacy
 │   └── VigilTests/
-└── website/               # Static promo site (Vercel)
+├── appstore/              # App Store screenshots (2880×1800)
+└── website/               # Static promo site (Vercel): vigil-for-mac.vercel.app
 ```
 
 New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystemSynchronizedRootGroup) — no need to edit `project.pbxproj`.
@@ -52,10 +53,21 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 - **Integration-style**: Tests create real IOPMAssertions and verify via `findAssertions(forPid:)`, a helper that queries the kernel with `IOPMCopyAssertionsByProcess`
 - **Entry point**: `AppLauncher` (the actual `@main`) detects test runs via `NSClassFromString("XCTestCase")` and substitutes a lightweight `TestApp`. Do not add `@main` to `VigilApp` directly.
 
+## Distribution
+
+- **App Store name**: "Vigil - Stay Awake" (managed in App Store Connect, separate from PRODUCT_NAME)
+- **PRODUCT_NAME**: `Vigil` — no colons allowed in .app bundle names (ITMS-90267)
+- **PRODUCT_MODULE_NAME**: not set (defaults to PRODUCT_NAME = `Vigil`)
+- **Bundle ID**: `serhiivasylenko.vigil`
+- **CI/CD**: Xcode Cloud (archive + TestFlight Internal Testing post-action)
+- **Website**: https://vigil-for-mac.vercel.app/ (Vercel, auto-deploys from `website/`)
+- **Privacy manifest**: `PrivacyInfo.xcprivacy` declares UserDefaults usage (reason `CA92.1`)
+
 ## Quirks
 
 - **LSUIElement = YES**: No Dock icon, no Cmd+Tab. The app only appears in the menu bar and Activity Monitor.
-- **Sandbox enabled**: IOPMAssertion is sandbox-compatible — no special entitlements needed.
+- **Sandbox enabled**: IOPMAssertion is sandbox-compatible — no special entitlements needed. Confirmed working in sandboxed Release + TestFlight builds.
 - **App icon vs menu bar icon**: Two separate assets. App icon (1024px character artwork) shows in Finder. Menu bar icon (18px) shows in the menu bar strip.
 - **Assertion lifecycle**: The OS automatically releases all IOPMAssertions if the app crashes — no leaked assertions possible.
 - **Verify it works**: `pmset -g assertions | grep Vigil` shows the active assertion type and reason string.
+- **No colons in PRODUCT_NAME**: Apple rejects `.app` bundles with `:` in the name (ITMS-90267). The App Store display name can have colons/dashes, but PRODUCT_NAME must not.
