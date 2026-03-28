@@ -17,7 +17,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8C983B542F634369004A6B1A /* Vigil: Stay Awake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vigil: Stay Awake.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C983B542F634369004A6B1A /* Vigil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vigil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C983B662F63436A004A6B1A /* VigilTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VigilTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB2DBC02F63742600F5B1E3 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ARCHITECTURE.md; path = ../ARCHITECTURE.md; sourceTree = SOURCE_ROOT; };
 		8CB2DBC12F63742600F5B1E3 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CLAUDE.md; path = ../CLAUDE.md; sourceTree = SOURCE_ROOT; };
@@ -72,7 +72,7 @@
 		8C983B552F634369004A6B1A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8C983B542F634369004A6B1A /* Vigil: Stay Awake.app */,
+				8C983B542F634369004A6B1A /* Vigil.app */,
 				8C983B662F63436A004A6B1A /* VigilTests.xctest */,
 			);
 			name = Products;
@@ -100,7 +100,7 @@
 			packageProductDependencies = (
 			);
 			productName = Vigil;
-			productReference = 8C983B542F634369004A6B1A /* Vigil: Stay Awake.app */;
+			productReference = 8C983B542F634369004A6B1A /* Vigil.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8C983B652F63436A004A6B1A /* VigilTests */ = {
@@ -369,8 +369,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = serhiivasylenko.vigil;
-				PRODUCT_MODULE_NAME = Vigil;
-				PRODUCT_NAME = "Vigil: Stay Awake";
+				PRODUCT_NAME = Vigil;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -407,8 +406,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = serhiivasylenko.vigil;
-				PRODUCT_MODULE_NAME = Vigil;
-				PRODUCT_NAME = "Vigil: Stay Awake";
+				PRODUCT_NAME = Vigil;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -437,7 +435,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vigil: Stay Awake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vigil: Stay Awake";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vigil.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vigil";
 			};
 			name = Debug;
 		};
@@ -459,7 +457,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vigil: Stay Awake.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vigil: Stay Awake";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vigil.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vigil";
 			};
 			name = Release;
 		};
