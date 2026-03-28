@@ -14,8 +14,6 @@ For architecture and decision rationale, see [ARCHITECTURE.md](ARCHITECTURE.md).
 - **Frameworks**: IOKit.pwr_mgt (power assertions), ServiceManagement (login items), Foundation (UserDefaults)
 - **Target**: macOS 15.6 (Sequoia), Apple Silicon + Intel
 - **Dependencies**: None. Zero third-party packages.
-- **Build**: `xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'`
-- **Test**: `xcodebuild test -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'`
 
 ## Project Structure
 
@@ -26,7 +24,7 @@ vigil/
 ├── PRD.md                 # Product requirements
 ├── app/                   # macOS app (Xcode project)
 │   ├── Vigil.xcodeproj/
-│   ├── Vigil/             # Source + PrivacyInfo.xcprivacy
+│   ├── Vigil/             # Source + PrivacyInfo.xcprivacy + Localizable.xcstrings
 │   └── VigilTests/
 ├── appstore/              # App Store screenshots (2880×1800)
 └── website/               # Static promo site (Vercel): vigil-for-mac.vercel.app
@@ -43,6 +41,7 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 - `// MARK: -` comments for view section organization
 - `import IOKit.pwr_mgt` (submodule import, not `import IOKit`)
 - Computed properties for view decomposition (`heroSection`, `modeSection`, etc.)
+- `LocalizedStringResource` for localizable strings in enums/models (not plain `String`) — enables auto-extraction into String Catalogs
 
 ## Testing
 
@@ -52,6 +51,37 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 - **DI**: `SleepManager` accepts `defaults: UserDefaults = .standard` — tests inject isolated suites via `UserDefaults(suiteName:)` to avoid cross-test contamination
 - **Integration-style**: Tests create real IOPMAssertions and verify via `findAssertions(forPid:)`, a helper that queries the kernel with `IOPMCopyAssertionsByProcess`
 - **Entry point**: `AppLauncher` (the actual `@main`) detects test runs via `NSClassFromString("XCTestCase")` and substitutes a lightweight `TestApp`. Do not add `@main` to `VigilApp` directly.
+
+## Localization
+
+- **Catalog**: Single `Localizable.xcstrings` (String Catalog) — all languages in one file
+- **Languages**: English (source), German (de), Spanish (es), Hindi (hi), Ukrainian (uk), Chinese Simplified (zh-Hans)
+- **SwiftUI views**: `Text("...")` and `Label("...")` strings are auto-extracted on build — no manual registration
+- **Enum/model strings**: Return `LocalizedStringResource` (not `String`) so Xcode auto-extracts them too
+- **Not localized**: `SleepMode.assertionReason` — intentionally English (appears in `pmset` output and Activity Monitor)
+- **Adding a new string**: Just use `Text("New string")` or return `LocalizedStringResource`. Build the project — the key appears in `Localizable.xcstrings` marked "New". Add translations there.
+- **Testing a language**: In Xcode: Edit Scheme → Run → Options → App Language. See CLI Commands below for command-line testing.
+
+## CLI Commands
+
+```bash
+# Build
+xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'
+
+# Test
+xcodebuild test -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS'
+
+# Build and run
+xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS' -quiet && \
+open "$(xcodebuild -project app/Vigil.xcodeproj -scheme Vigil -showBuildSettings 2>/dev/null | grep '^ *BUILT_PRODUCTS_DIR = ' | sed 's/.*= //')/Vigil.app"
+
+# Build and run with a specific language (replace 'uk' with: de, es, hi, zh-Hans)
+xcodebuild build -project app/Vigil.xcodeproj -scheme Vigil -destination 'platform=macOS' -quiet && \
+open "$(xcodebuild -project app/Vigil.xcodeproj -scheme Vigil -showBuildSettings 2>/dev/null | grep '^ *BUILT_PRODUCTS_DIR = ' | sed 's/.*= //')/Vigil.app" --args -AppleLanguages '(uk)'
+
+# Verify sleep assertion is active
+pmset -g assertions | grep Vigil
+```
 
 ## Distribution
 

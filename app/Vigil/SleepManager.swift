@@ -24,14 +24,14 @@ enum SleepMode: String, CaseIterable {
         }
     }
 
-    var label: String {
+    var label: LocalizedStringResource {
         switch self {
         case .displayAndSystem: "Display & System"
         case .systemOnly: "System Only"
         }
     }
 
-    var description: String {
+    var modeDescription: LocalizedStringResource {
         switch self {
         case .displayAndSystem: "Screen and system stay awake"
         case .systemOnly: "Screen may sleep, system stays running"
