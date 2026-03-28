@@ -23,21 +23,60 @@
         }
     </script>
     <style>
+        body {
+            background: #09090b;
+            background-image:
+                radial-gradient(ellipse 80% 60% at 50% 20%, rgba(59, 130, 246, 0.06), transparent),
+                radial-gradient(ellipse 50% 40% at 50% 80%, rgba(39, 39, 42, 0.4), transparent);
+        }
         .icon-glow {
-            box-shadow: 0 0 60px 15px rgba(59, 130, 246, 0.12);
+            box-shadow: 0 0 80px 20px rgba(59, 130, 246, 0.18), 0 0 30px 5px rgba(59, 130, 246, 0.1);
+        }
+        .screenshot-frame {
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .screenshot-frame:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.12);
         }
         .feature-card {
-            transition: border-color 0.2s ease;
+            transition: border-color 0.2s ease, transform 0.2s ease;
         }
         .feature-card:hover {
             border-color: #3f3f46;
+            transform: translateY(-1px);
         }
+        .feature-card-primary {
+            border-color: rgba(59, 130, 246, 0.25);
+            background: linear-gradient(to bottom, rgba(59, 130, 246, 0.06), rgba(24, 24, 27, 0.6));
+        }
+        .feature-card-primary:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        /* Staggered entrance animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            opacity: 0;
+            animation: fadeUp 0.6s ease-out forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.35s; }
+        .delay-4 { animation-delay: 0.5s; }
+        .delay-5 { animation-delay: 0.65s; }
+        .delay-6 { animation-delay: 0.8s; }
+        .delay-7 { animation-delay: 0.95s; }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 antialiased">
+<body class="text-zinc-100 antialiased">
 
     <!-- Nav -->
-    <nav class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
+    <nav class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between animate-in">
         <a href="https://github.com/vasylenko/vigil" target="_blank" rel="noopener"
            class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">
             GitHub
@@ -49,39 +88,42 @@
 
     <!-- Hero -->
     <section class="max-w-3xl mx-auto px-6 pt-6 pb-12 text-center">
-        <div class="flex justify-center mb-8">
+        <div class="flex justify-center mb-8 animate-in delay-1">
             <img src="img/icon.png" alt="Vigil app icon"
                  class="w-28 h-28 rounded-[1.5rem] icon-glow">
         </div>
-        <h1 class="text-5xl sm:text-6xl font-bold tracking-tight mb-4">
-            Vigil - Stay Awake
+        <h1 class="animate-in delay-2">
+            <span class="block text-5xl sm:text-6xl font-bold tracking-tight">Vigil</span>
+            <span class="block text-xl sm:text-2xl font-medium text-zinc-400 mt-2 tracking-wide">Stay Awake</span>
         </h1>
-        <p class="text-lg text-zinc-400 max-w-lg mx-auto mb-10 leading-relaxed">
+        <p class="text-lg text-zinc-400 max-w-lg mx-auto mb-10 mt-6 leading-relaxed animate-in delay-3">
             Most sleep prevention tools give you thirty features when all you needed was one click.
             Vigil is that one click.
         </p>
-        <a href="https://github.com/vasylenko/vigil/releases" target="_blank" rel="noopener"
-           class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-3 rounded-xl transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-            </svg>
-            Download on GitHub
-        </a>
-        <p class="mt-3 text-xs text-zinc-500">
-            macOS 15+ &middot; Apple Silicon &amp; Intel
-        </p>
+        <div class="animate-in delay-4">
+            <a href="https://github.com/vasylenko/vigil/releases" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-3 rounded-xl transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Download on GitHub
+            </a>
+            <p class="mt-3 text-xs text-zinc-500">
+                macOS 15+ &middot; Apple Silicon &amp; Intel
+            </p>
+        </div>
     </section>
 
     <!-- Screenshots -->
     <section class="max-w-3xl mx-auto px-6 py-8 text-center">
-        <h2 class="text-2xl font-bold tracking-tight mb-3">Lives in Your Menu Bar</h2>
-        <p class="text-zinc-400 mb-8">No dock icon. No clutter. Just a quiet toggle that does exactly what you asked.</p>
-        <div class="flex justify-center gap-6 flex-wrap">
-            <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-3">
+        <h2 class="text-2xl font-bold tracking-tight mb-3 animate-in delay-5">Lives in Your Menu Bar</h2>
+        <p class="text-zinc-400 mb-8 animate-in delay-5">No dock icon. No clutter. Just a quiet toggle that does exactly what you asked.</p>
+        <div class="flex justify-center gap-6 flex-wrap animate-in delay-6">
+            <div class="screenshot-frame bg-zinc-900/60 border border-zinc-800 rounded-2xl p-3">
                 <img src="img/scr1.png" alt="Vigil — inactive state"
                      class="rounded-xl w-64">
             </div>
-            <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-3">
+            <div class="screenshot-frame bg-zinc-900/60 border border-zinc-800 rounded-2xl p-3">
                 <img src="img/scr2.png" alt="Vigil — active state"
                      class="rounded-xl w-64">
             </div>
@@ -90,10 +132,10 @@
 
     <!-- Features -->
     <section class="max-w-3xl mx-auto px-6 py-16">
-        <div class="grid sm:grid-cols-3 gap-5">
-            <div class="feature-card bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6">
-                <div class="w-10 h-10 flex items-center justify-center bg-zinc-800 rounded-xl mb-4">
-                    <svg class="w-5 h-5 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="grid sm:grid-cols-3 gap-5 animate-in delay-7">
+            <div class="feature-card feature-card-primary border border-zinc-800 rounded-2xl p-6">
+                <div class="w-10 h-10 flex items-center justify-center bg-blue-600/15 rounded-xl mb-4">
+                    <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/>
                     </svg>
                 </div>
