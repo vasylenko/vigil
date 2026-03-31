@@ -1,6 +1,8 @@
 import SwiftUI
 import ServiceManagement
 
+private let beaconGlow = Color(red: 0.910, green: 0.604, blue: 0.180)
+
 struct MenuBarView: View {
     let sleepManager: SleepManager
     @State private var launchAtLogin = false
@@ -33,18 +35,26 @@ struct MenuBarView: View {
     // MARK: - Hero
 
     private var heroSection: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 8) {
             Image(nsImage: NSApplication.shared.applicationIconImage)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 80)
+                .frame(height: 76)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
-                .opacity(sleepManager.isActive ? 1.0 : 0.4)
-                .animation(.spring(duration: 0.25), value: sleepManager.isActive)
+                .opacity(sleepManager.isActive ? 1.0 : 0.35)
+                .shadow(
+                    color: sleepManager.isActive ? beaconGlow : .clear,
+                    radius: sleepManager.isActive ? 10 : 0
+                )
+                .shadow(
+                    color: sleepManager.isActive ? beaconGlow.opacity(0.6) : .clear,
+                    radius: sleepManager.isActive ? 4 : 0
+                )
+                .animation(.easeInOut(duration: 0.3), value: sleepManager.isActive)
 
             HStack(spacing: 8) {
                 Text("Stay Awake")
-                    .font(.headline)
+                    .font(.system(size: 14, weight: .semibold))
                 Toggle(isOn: Binding(
                     get: { sleepManager.isActive },
                     set: { _ in sleepManager.toggle() }
@@ -56,16 +66,12 @@ struct MenuBarView: View {
             }
 
             Text(sleepManager.isActive ? "Sleep prevention is on" : "Sleep prevention is off")
-                .font(.caption)
+                .font(.system(size: 11, weight: .regular))
                 .foregroundStyle(.secondary)
         }
-        .padding()
+        .padding(.vertical, 16)
+        .padding(.horizontal, 16)
         .frame(maxWidth: .infinity)
-        .background {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(sleepManager.isActive ? Color.accentColor.opacity(0.08) : .clear)
-                .animation(.spring(duration: 0.25), value: sleepManager.isActive)
-        }
         .padding(.horizontal, 8)
         .padding(.top, 4)
         .padding(.bottom, 8)
@@ -74,7 +80,7 @@ struct MenuBarView: View {
     // MARK: - Mode
 
     private var modeSection: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 6) {
             Picker("Mode", selection: Binding(
                 get: { sleepManager.sleepMode },
                 set: { sleepManager.sleepMode = $0 }
@@ -87,12 +93,12 @@ struct MenuBarView: View {
             .labelsHidden()
 
             Text(sleepManager.sleepMode.modeDescription)
-                .font(.caption)
+                .font(.system(size: 11, weight: .regular))
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .padding(.horizontal)
-        .padding(.vertical, 8)
+        .padding(.vertical, 10)
     }
 
     // MARK: - Settings
@@ -101,6 +107,7 @@ struct MenuBarView: View {
         VStack(spacing: 0) {
             Toggle(isOn: $launchAtLogin) {
                 Text("Launch at Login")
+                    .font(.system(size: 12))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .onChange(of: launchAtLogin) { _, newValue in
@@ -110,7 +117,7 @@ struct MenuBarView: View {
                     try? SMAppService.mainApp.unregister()
                 }
             }
-            .padding(.vertical, 4)
+            .padding(.vertical, 6)
 
             Divider()
 
@@ -119,9 +126,10 @@ struct MenuBarView: View {
                 set: { sleepManager.rememberLastState = $0 }
             )) {
                 Text("Remember Last State")
+                    .font(.system(size: 12))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .padding(.vertical, 4)
+            .padding(.vertical, 6)
         }
         .controlSize(.small)
         .toggleStyle(.switch)
@@ -137,7 +145,7 @@ struct MenuBarView: View {
             NSApplication.shared.terminate(nil)
         } label: {
             Label("Quit Vigil", systemImage: "power")
-                .font(.subheadline)
+                .font(.system(size: 12))
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity)
         }
@@ -147,7 +155,7 @@ struct MenuBarView: View {
         .contentShape(Rectangle())
         .background {
             RoundedRectangle(cornerRadius: 4)
-                .fill(isHoveringQuit ? Color.primary.opacity(0.08) : .clear)
+                .fill(isHoveringQuit ? Color.primary.opacity(0.06) : .clear)
         }
         .onHover { hovering in
             isHoveringQuit = hovering
