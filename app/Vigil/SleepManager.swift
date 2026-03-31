@@ -1,6 +1,6 @@
-import IOKit.pwr_mgt
-import Foundation
 import AppKit
+import Foundation
+import IOKit.pwr_mgt
 
 enum SleepMode: String, CaseIterable {
     case displayAndSystem

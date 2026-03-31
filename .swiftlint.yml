@@ -1,0 +1,19 @@
+# SwiftLint configuration for Vigil
+
+included:
+  - app/Vigil
+  - app/VigilTests
+
+# Rules adjusted to match existing code style
+trailing_comma:
+  mandatory_comma: true
+
+type_body_length:
+  warning: 300
+  error: 400
+
+large_tuple:
+  warning: 4
+
+identifier_name:
+  min_length: 1

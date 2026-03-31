@@ -28,6 +28,6 @@ struct VigilApp: App {
 
 struct TestApp: App {
     var body: some Scene {
-        WindowGroup { }
+        WindowGroup {}
     }
 }

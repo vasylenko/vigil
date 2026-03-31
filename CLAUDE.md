@@ -22,6 +22,8 @@ vigil/
 ├── CLAUDE.md              # AI quick-reference
 ├── ARCHITECTURE.md        # System design and decision log
 ├── PRD.md                 # Product requirements
+├── .swiftlint.yml         # SwiftLint config
+├── .swiftformat           # SwiftFormat config
 ├── app/                   # macOS app (Xcode project)
 │   ├── Vigil.xcodeproj/
 │   ├── Vigil/             # Source + PrivacyInfo.xcprivacy + Localizable.xcstrings
@@ -36,12 +38,13 @@ New `.swift` files in `app/Vigil/` are auto-included in the build (PBXFileSystem
 
 - `@Observable` class + `@State` ownership (NOT `ObservableObject`/`@StateObject`/`@Published`)
 - All types are MainActor-isolated by default (build setting) — no need for explicit `@MainActor`
-- Custom `Binding` wrappers to route toggle changes through methods (e.g., `sleepManager.toggle()`)
+- `Button` actions to route toggle changes through methods (e.g., `sleepManager.toggle()`)
 - `didSet` observers for UserDefaults persistence
 - `// MARK: -` comments for view section organization
 - `import IOKit.pwr_mgt` (submodule import, not `import IOKit`)
-- Computed properties for view decomposition (`heroSection`, `modeSection`, etc.)
+- Computed properties for view decomposition (`sceneSection`, `modeSection`, etc.)
 - `LocalizedStringResource` for localizable strings in enums/models (not plain `String`) — enables auto-extraction into String Catalogs
+- **Linting**: SwiftLint (`.swiftlint.yml`) + SwiftFormat (`.swiftformat`) — pre-commit hook runs both on staged `.swift` files
 
 ## Testing
 
@@ -81,6 +84,15 @@ open "$(xcodebuild -project app/Vigil.xcodeproj -scheme Vigil -showBuildSettings
 
 # Verify sleep assertion is active
 pmset -g assertions | grep Vigil
+
+# Lint
+swiftlint lint app/Vigil/ app/VigilTests/
+
+# Format (auto-fix)
+swiftformat app/Vigil/ app/VigilTests/
+
+# Format (check only, no changes)
+swiftformat --lint app/Vigil/ app/VigilTests/
 ```
 
 ## Distribution
