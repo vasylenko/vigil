@@ -1,12 +1,11 @@
-import Testing
 import Foundation
 import IOKit.pwr_mgt
+import Testing
 @testable import Vigil
 
 @Suite(.serialized)
 @MainActor
 struct SleepManagerTests {
-
     private func makeDefaults() -> UserDefaults {
         UserDefaults(suiteName: "test-\(UUID().uuidString)")!
     }

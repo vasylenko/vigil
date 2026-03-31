@@ -36,7 +36,7 @@
 
 **Why `PreventUserIdleDisplaySleep` covers both**: Per Apple's IOPMLib.h, preventing display sleep implicitly prevents system idle sleep. One assertion handles both — no need for two separate ones.
 
-**Toggle binding pattern**: The Stay Awake toggle uses a custom `Binding` that calls `sleepManager.toggle()` on set (not a direct bool assignment). This routes all state changes through activate/deactivate, ensuring the IOPMAssertion is always in sync.
+**Toggle via lighthouse button**: The lighthouse icon in the hero section is a plain `Button` that calls `sleepManager.toggle()`. This routes all state changes through activate/deactivate, ensuring the IOPMAssertion is always in sync.
 
 **Launch at Login**: Uses `@State private var launchAtLogin` synced from `SMAppService.mainApp.status` on `.onAppear`. Registration/unregistration uses `try?` — the system may deny silently, and we re-read status on next appear.
 

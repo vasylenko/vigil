@@ -1,0 +1,12 @@
+# SwiftFormat configuration for Vigil
+
+--swiftversion 6.0
+
+# Only format app sources
+--exclude .build,prototypes
+
+# Disable rules that conflict with existing code style
+--disable wrapMultilineStatementBraces
+--disable andOperator
+--disable elseOnSameLine
+--disable blankLinesBetweenScopes
