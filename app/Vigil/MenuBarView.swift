@@ -21,9 +21,18 @@ struct MenuBarView: View {
         }
         .frame(width: 280)
         .fixedSize()
+        .background(controlPanelBackground)
+        .preferredColorScheme(.dark)
         .onAppear {
             launchAtLogin = SMAppService.mainApp.status == .enabled
         }
+    }
+
+    private var controlPanelBackground: some View {
+        (sleepManager.isActive
+            ? Color(red: 0.05, green: 0.08, blue: 0.15)
+            : Color(red: 0.07, green: 0.07, blue: 0.08))
+            .animation(.easeInOut(duration: 0.6), value: sleepManager.isActive)
     }
 
     // MARK: - Scene
@@ -175,8 +184,8 @@ struct MenuBarView: View {
                     Text("Light the beacon")
                 }
             }
-            .font(.system(size: 10, weight: .medium))
-            .foregroundStyle(.white.opacity(0.4))
+            .font(.system(size: 11, weight: .medium))
+            .foregroundStyle(.white.opacity(0.7))
             .animation(.easeInOut(duration: 0.3), value: sleepManager.isActive)
         }
     }
@@ -192,8 +201,8 @@ struct MenuBarView: View {
                         sleepManager.sleepMode = mode
                     } label: {
                         Text(mode.label)
-                            .font(.system(size: 11, weight: isSelected ? .semibold : .medium))
-                            .foregroundStyle(isSelected ? beaconGlow : .secondary)
+                            .font(.system(size: 13, weight: isSelected ? .semibold : .medium))
+                            .foregroundStyle(isSelected ? beaconGlow : .white.opacity(0.55))
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 7)
                             .background(
@@ -211,8 +220,8 @@ struct MenuBarView: View {
             }
 
             Text(sleepManager.sleepMode.modeDescription)
-                .font(.system(size: 11, weight: .regular))
-                .foregroundStyle(.secondary)
+                .font(.system(size: 10, weight: .regular))
+                .foregroundStyle(.white.opacity(0.7))
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .padding(.horizontal)
@@ -245,7 +254,7 @@ struct MenuBarView: View {
             HStack {
                 Text(title)
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(isOn ? .primary : .secondary)
+                    .foregroundStyle(isOn ? .white : .white.opacity(0.55))
                 Spacer()
                 Circle()
                     .fill(isOn ? beaconGlow : Color.white.opacity(0.08))
@@ -271,15 +280,15 @@ struct MenuBarView: View {
             NSApplication.shared.terminate(nil)
         } label: {
             Label("Quit Vigil", systemImage: "power")
-                .font(.system(size: 12))
-                .foregroundStyle(.secondary)
+                .font(.system(size: 11))
+                .foregroundStyle(.white.opacity(0.7))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 8)
                 .padding(.horizontal)
                 .contentShape(Rectangle())
                 .background(
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(isHoveringQuit ? Color.primary.opacity(0.06) : .clear)
+                        .fill(isHoveringQuit ? Color.white.opacity(0.06) : .clear)
                 )
         }
         .buttonStyle(.plain)
