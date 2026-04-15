@@ -2,6 +2,12 @@
 
 A lightweight macOS menu bar utility that prevents your Mac from sleeping. No bloat, no subscriptions, no unnecessary features — just a toggle in your menu bar.
 
+<p align="center">
+  <a href="https://apps.apple.com/app/id6761284593">
+    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-mac-app-store.svg" alt="Download on the Mac App Store" height="48">
+  </a>
+</p>
+
 ## Why
 
 Amphetamine is great but heavyweight. Vigil exists because keeping a Mac awake shouldn't require a complex app with dozens of features you'll never use.
@@ -37,11 +43,7 @@ Lid close, manual sleep, and critical battery always override — Vigil can't pr
 - macOS 15.6 (Sequoia) or later
 - Apple Silicon or Intel
 
-## Install
-
-**[Download from the Mac App Store](https://apps.apple.com/app/id6761284593)**
-
-### Build from Source
+## Build from Source
 
 ```bash
 git clone https://github.com/vasylenko/vigil.git
