@@ -4,7 +4,7 @@ A lightweight macOS menu bar utility that prevents your Mac from sleeping. No bl
 
 <p align="center">
   <a href="https://apps.apple.com/app/id6761284593">
-    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-mac-app-store.svg" alt="Download on the Mac App Store" height="48">
+    <img src="https://img.shields.io/badge/Download_on_the-Mac_App_Store-0d96f6?style=for-the-badge&logo=apple&logoColor=white" alt="Download on the Mac App Store">
   </a>
 </p>
 
