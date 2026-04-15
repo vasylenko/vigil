@@ -16,9 +16,9 @@ Vigil uses the same kernel API (`IOPMAssertionCreateWithName`) that powers `caff
 - **Menu bar only**: no Dock icon, no Cmd+Tab entry — stays out of your way
 
 <p align="center">
-  <img src="assets/active.png" width="280" alt="Vigil active — System Only mode preventing idle sleep">
+  <img src="website/img/scr1.png" width="280" alt="Vigil inactive — sleep prevention is off">
   &nbsp;&nbsp;
-  <img src="assets/inactive.png" width="280" alt="Vigil inactive — sleep prevention is off">
+  <img src="website/img/scr2.png" width="280" alt="Vigil active — System Only mode preventing idle sleep">
 </p>
 
 ## How It Works
@@ -37,7 +37,11 @@ Lid close, manual sleep, and critical battery always override — Vigil can't pr
 - macOS 15.6 (Sequoia) or later
 - Apple Silicon or Intel
 
-## Build from Source
+## Install
+
+**[Download from the Mac App Store](https://apps.apple.com/app/id6761284593)**
+
+### Build from Source
 
 ```bash
 git clone https://github.com/vasylenko/vigil.git
