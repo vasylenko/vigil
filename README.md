@@ -66,5 +66,4 @@ pid 1234(Vigil): PreventUserIdleDisplaySleep named: "Vigil is keeping your Mac a
 
 ## Tech Stack
 
-Swift 6, SwiftUI, zero third-party dependencies. ~300 lines of code across three files.
-
+Swift 6, SwiftUI, zero third-party dependencies. ~500 lines of code across three files.
