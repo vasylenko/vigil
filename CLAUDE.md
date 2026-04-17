@@ -28,7 +28,6 @@ vigil/
 │   ├── Vigil.xcodeproj/
 │   ├── Vigil/             # Source + PrivacyInfo.xcprivacy + Localizable.xcstrings
 │   └── VigilTests/
-├── appstore/              # App Store screenshots (2880×1800)
 └── website/               # Static promo site (Vercel): vigil-for-mac.vercel.app
 ```
 
