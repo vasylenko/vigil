@@ -13,7 +13,7 @@
                     ┌───────────────────────┬┘
                     ▼                       ▼
          IOKit (IOPMLib)            UserDefaults
-         IOPMAssertionCreate        rememberLastState
+         IOPMAssertionCreateWithName rememberLastState
          IOPMAssertionRelease       wasActiveAtQuit
                     │               sleepMode
                     ▼
@@ -58,7 +58,7 @@
 ## Assertion Behavior Matrix
 
 | Scenario | Idle sleep | Display sleep | Lid close | Manual sleep | Critical battery |
-|----------|-----------|---------------|-----------|-------------|-----------------|
+|----------|-----------|---------------|-----------|-------------|----------------|
 | **Display & System mode ON** | Blocked | Blocked | Sleeps | Sleeps | Sleeps |
 | **System Only mode ON** | Blocked | Allowed | Sleeps | Sleeps | Sleeps |
 | **Both modes OFF** | Normal | Normal | Sleeps | Sleeps | Sleeps |
@@ -68,7 +68,7 @@ Assertions are *requests* — macOS overrides them for lid close, manual sleep (
 ## UserDefaults Keys
 
 | Key | Type | Default | Purpose |
-|-----|------|---------|---------|
+|-----|------|---------|--------|
 | `rememberLastState` | Bool | `false` | Whether to restore state on launch |
 | `wasActiveAtQuit` | Bool | `false` | Whether assertion was active at last quit (removed when `rememberLastState` is off) |
 | `sleepMode` | String | `displayAndSystem` | Selected sleep prevention mode |
@@ -76,8 +76,8 @@ Assertions are *requests* — macOS overrides them for lid close, manual sleep (
 ## Error Handling
 
 | Failure | What happens | User sees |
-|---------|-------------|-----------|
-| `IOPMAssertionCreate` returns non-success | `isActive` stays `false`, toggle appears off | Toggle doesn't turn on — silent failure. |
+|---------|-------------|----------|
+| `IOPMAssertionCreateWithName` returns non-success | `isActive` stays `false`, toggle appears off | Toggle doesn't turn on — silent failure. |
 | `IOPMAssertionRelease` on invalid ID | No-op (guarded by `isActive` check) | Nothing. |
 | `SMAppService.register()` throws | `try?` swallows error | Toggle re-syncs with actual system state on next `.onAppear`. |
 | `UserDefaults` key missing | Returns `false` (Bool) or `nil` (String) | App starts with defaults: inactive, Display & System mode. |
