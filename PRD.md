@@ -35,7 +35,7 @@
 - [x] Privacy manifest (PrivacyInfo.xcprivacy)
 - [x] App Store metadata (description, keywords, screenshots, age rating, privacy labels)
 - [x] Website with privacy policy and support pages
-- [ ] Mac App Store submission
+- [x] Mac App Store submission
 - [ ] Homebrew Cask formula
 - [ ] Notarized DMG for direct download
 
