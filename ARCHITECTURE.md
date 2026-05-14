@@ -8,17 +8,20 @@
   User clicks icon ───► Menu bar (MenuBarExtra .window)
                               │
                               ▼
-                        MenuBarView ──► SleepManager
-                                            │
-                    ┌───────────────────────┬┘
+                        MenuBarView ──────────────────► SMAppService
+                              │                         login item registration
+                              ▼
+                        SleepManager
+                              │
+                    ┌─────────┴─────────────┐
                     ▼                       ▼
          IOKit (IOPMLib)            UserDefaults
          IOPMAssertionCreateWithName rememberLastState
          IOPMAssertionRelease       wasActiveAtQuit
                     │               sleepMode
                     ▼
-         powerd (kernel daemon)     SMAppService
-         system-wide assertions     login item registration
+         powerd (kernel daemon)
+         system-wide assertions
 ```
 
 ## Design Rationale
