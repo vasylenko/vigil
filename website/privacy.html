@@ -48,9 +48,10 @@
 
             <h2 class="text-xl font-semibold text-zinc-100 pt-4">Local Storage</h2>
             <p>
-                Vigil stores your preferences (sleep mode, launch-at-login setting, and last active state)
-                locally on your Mac using macOS UserDefaults. This data never leaves your device and is removed
-                when you delete the app.
+                Vigil stores your preferences locally on your Mac. Sleep mode and last active state are saved
+                in macOS UserDefaults. The launch at login setting is managed by the macOS ServiceManagement
+                framework, which registers Vigil as a login item through standard OS APIs. None of this data
+                ever leaves your device and it is removed when you delete the app.
             </p>
 
             <h2 class="text-xl font-semibold text-zinc-100 pt-4">System Permissions</h2>
